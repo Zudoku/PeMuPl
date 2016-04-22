@@ -1,0 +1,59 @@
+<div class="container">
+  <div class="jumbotron">
+    <h1>Dashboard</h1>
+  </div>
+  <form role="form">
+    <h2>Add new track</h2>
+    <div class="form-group">
+      <label for="trackUrl">Track VideoID</label>
+      <input type="text" ng-model="newTrack.youtubeurl" class="form-control" id="trackUrl" placeholder="videoID">
+    </div>
+    <div class="form-group">
+      <label for="trackName">Track name</label>
+      <input type="text" ng-model="newTrack.trackname" class="form-control" id="trackName" placeholder="name">
+    </div>
+    <div class="form-group">
+      <label for="password">Password</label>
+      <input type="text" ng-model="newTrack.password" class="form-control" id="password" placeholder="Password">
+    </div>
+
+    <div class="form-group">
+      <label for="genre1">Genre</label>
+      <select id="genre1" ng-model="newTrack.genre1" class="form-control">
+        <option>generic house</option>
+        <option>future house</option>
+        <option>deep house</option>
+        <option>bounce</option>
+        <option>electro</option>
+        <option>other edm</option>
+        <option>trap</option>
+        <option>glitch hop</option>
+        <option>chill</option>
+        <option>other</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="genre2">Song mood</label>
+      <select id="genre2" ng-model="newTrack.genre2" class="form-control">
+        <option>hype</option>
+        <option>basic jams</option>
+        <option>good feeling</option>
+        <option>chill</option>
+        <option>situational</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="genre3">Song type</label>
+      <select id="genre3" ng-model="newTrack.genre3" class="form-control">
+        <option>song</option>
+        <option>mix</option>
+      </select>
+    </div>
+
+    <button ng-click="postTrack()" class="btn btn-default">Submit</button>
+
+  </form>
+</div>
+

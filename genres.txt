@@ -1,0 +1,37 @@
+GENRE 1 (genre)
+
+generic house
+deep house
+future house
+
+bounce
+
+electro
+
+other edm
+
+trap
+
+glitch hop
+
+chill
+
+other
+
+GENRE 2 (mood)
+
+hype
+
+basic jams
+
+good feeling
+
+chill
+
+situational
+
+GENRE 3 (song type)
+
+song
+
+mix

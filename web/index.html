@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="pemupl">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>PeMuPl</title>
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+  </head>
+  <body class="bgcolor-white">
+
+    <div ng-view class ="bgcolor-white">
+      
+
+    </div>
+
+    <div id="footer">
+      <div class="container">
+    </div>
+    <!-- LIBRARIES -->
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://code.jquery.com/jquery.js"></script>
+    <!-- Bootstrap -->
+    <script src="lib/bootstrap/bootstrap.min.js"></script>
+    <!-- Angular.js -->
+    <script src="lib/angular/angular.js"></script>
+    <script src="lib/angular/angular-route.js"></script>
+
+    <!-- ANGULAR FILES -->
+    <script src="js/app.js"></script>
+    <script src="js/controllers/frontcontroller.js"></script>
+    <script src="js/controllers/addtrackcontroller.js"></script>
+
+    <script src="js/services.js"></script>
+    <script src="js/controllers.js"></script>
+    <script src="js/filters.js"></script>
+    <script src="js/directives.js"></script> 
+
+
+    <!-- Google analytics -->
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+              m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-48311496-3', 'auto');
+      ga('send', 'pageview');
+
+    </script>
+</body>
+</html>
