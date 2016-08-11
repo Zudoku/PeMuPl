@@ -1,105 +1,193 @@
 <div class="container">
-	<div class="jumbotron">
-		<h1>Personal Music Player</h1>
-		Made by Arttu Siren
+	<div class="jumbotron " style="padding-top: 0px;">
+		<h1 style="margin-top: 0px;">Personal Music Player </h1>
+		<small>PeMuPl for short</small>, Made by Arttu Siren, 2016, version 2.0.0
 		<hr>
-		<div style="position:relative;width:500px;height:80px;overflow:hidden;">
-			<div style="position:absolute;top:-266px;left:-5px">
-				
+		<div style="position:relative;width:100%;height:40px;overflow:hidden;">
+			<div style="width:100%;position:absolute;top:-266px;left:-5px">
+
 				<div id="player"> </div>
-				<script> 
-	    			var tag = document.createElement('script');
+				<script>
+				function onYouTubeIframeAPIReady() {
+					player = new YT.Player('player', {
+							height: '310',
+							width: '100%',
+							videoId: '',
+							autoplay : '1',
+							controls : '2',
+							events: {
+								'onReady': onPlayerReady,
+								'onStateChange': onPlayerStateChange,
+								'onError' : onError
+							}
+					});
+					window.player = player;
+				}
 
-	    			tag.src = "https://www.youtube.com/iframe_api";
-	    			var firstScriptTag = document.getElementsByTagName('script')[0];
-	    			firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+				function onPlayerReady(event) {
+						//event.target.playVideo();
+						var scope = angular.element($("#partialContainer")).scope();
+						scope.setCanStart();
+				}
+				function onPlayerStateChange(event) {
+					if(window.player != undefined && (window.player.getPlayerState() == 0)){
+						var scope = angular.element($("#partialContainer")).scope();
+						scope.loadNextVideo();
 
-	      			var player;
-	      			function onYouTubeIframeAPIReady() {
-	      				console.log("here");
-	      				player = new YT.Player('player', {
-	      					height: '310',
-	      					width: '500',
-	      					videoId: 'VREoSPYVsYs',
-	      					autoplay : '1',
-	      					controls : '2',
-	      					events: {
-	      						'onReady': onPlayerReady,
-	      						'onStateChange': onPlayerStateChange
-	      					}
-	      				});
-	      				window.player = player;
-	      			}
-
-	      			function onPlayerReady(event) {
-	      				//event.target.playVideo();
-	      			}
-	      			function onPlayerStateChange(event) {
-
-	      			}
-	      
-	  			</script>
+					}
+					if(window.player != undefined && (window.player.getPlayerState() == 1)){
+						var scope = angular.element($("#partialContainer")).scope();
+						scope.initPlayerSettings();
+					}
+				}
+				function onError(event){
+						var scope = angular.element($("#partialContainer")).scope();
+						scope.loadNextVideo();
+				}
+				</script>
 			</div>
 		</div>
 		<hr>
+		<div class="panel-group">
+  		<div class="panel panel-default" >
+    		<div class="panel-heading"data-toggle="collapse" data-target="#filteringpanel">
+      		<h4 class="panel-title">
+        		Song filtering
+      		</h4>
+    		</div>
+    		<div id="filteringpanel" class="panel-collapse collapse">
+      		<div class="panel-body">
+						<div>
+							<form>
+								<div class="form-group">
+									<label for="search">Search</label>
+									<input type="text" ng-model="filterOptions.search" class="form-control" id="search" placeholder="">
+								</div>
+								<div class="form-group">
+									<label for="genre1">Filter Genre</label>
+									<select id="genre1" ng-model="filterOptions.genre1" class="form-control">
+			  							<option>No filter</option>
+			  							<option>all edm (includes subgenres)</option>
+			  							<option>House (includes subgenres)</option>
+			  							<option>generic house</option>
+			        				<option>future house</option>
+			        				<option>deep house</option>
+			        				<option>bounce</option>
+			        				<option>electro</option>
+			        				<option>other edm</option>
+			        				<option>trap</option>
+			        				<option>glitch hop</option>
+			        				<option>chill</option>
+			        				<option>other</option>
+										</select>
+									</div>
 
-		<div>
-			<form>
-				<div class="form-group">
-				<label for="search">Search</label>
-					<input type="text" ng-model="filterOptions.search" class="form-control" id="search" placeholder="">
-				</div>
-				<div class="form-group">
-					<label for="genre1">Filter Genre</label>
-					<select id="genre1" ng-model="filterOptions.genre1" class="form-control">
-  						<option>No filter</option>
-  						<option>all edm (includes subgenres)</option>
-  						<option>House (includes subgenres)</option>
-  						<option>generic house</option>
-        				<option>future house</option>
-        				<option>deep house</option>
-        				<option>bounce</option>
-        				<option>electro</option>
-        				<option>other edm</option>
-        				<option>trap</option>
-        				<option>glitch hop</option>
-        				<option>chill</option>
-        				<option>other</option>
-					</select>
-				</div>
+								<div class="form-group">
+									<label for="genre2">Filter Mood</label>
+									<select id="genre2" ng-model="filterOptions.genre2" class="form-control">
+			  						<option>No filter</option>
+			  						<option>hype</option>
+			  						<option>basic jams</option>
+			  						<option>good feeling</option>
+			  						<option>chill</option>
+			  						<option>situational</option>
+									</select>
+								</div>
 
-				<div class="form-group">
-					<label for="genre2">Filter Mood</label>
-					<select id="genre2" ng-model="filterOptions.genre2" class="form-control">
-  						<option>No filter</option>
-  						<option>hype</option>
-  						<option>basic jams</option>
-  						<option>good feeling</option>
-  						<option>chill</option>
-  						<option>situational</option>
-					</select>
-				</div>
+								<div class="form-group">
+									<label for="genre3">Filter Type</label>
+									<select id="genre3" ng-model="filterOptions.genre3" class="form-control">
+			  						<option>No filter</option>
+			  						<option>song</option>
+			  						<option>mix</option>
+									</select>
+								</div>
 
-				<div class="form-group">
-					<label for="genre3">Filter Type</label>
-					<select id="genre3" ng-model="filterOptions.genre3" class="form-control">
-  						<option>No filter</option>
-  						<option>song</option>
-  						<option>mix</option>
-					</select>
-				</div>
-				
-				<div class="checkbox">
-					<label>
-						<input ng-model="filterOptions.shuffle" type="checkbox"> shuffle
-					</label>
-				</div>
-				<button ng-click="applyReshuffle()" class="btn btn-default btn-lg">Apply / Re-Shuffle</button>
-				<button ng-click="skip()" class="btn btn-default btn-lg">Skip</button>
-				<button ng-click="pausePlay()" class="btn btn-default btn-lg">Pause / Play</button>
-			</form>
+
+								<button ng-click="applyfilters()" class="btn btn-default btn-lg">Apply</button>
+								<button ng-click="resetFilters()" class="btn btn-default btn-lg">Reset</button>
+							</form>
+						</div>
+					</div>
+    		</div>
+  		</div>
 		</div>
 
+		<div class="checkbox">
+			<label>
+				<input ng-model="filterOptions.shuffle" type="checkbox"> <span class="label label-primary"> shuffle </span>
+			</label>
+		</div>
+		<div>
+
+			<div ng-show="playerSettings.started" class="row ">
+				<div class="col-md-3">
+
+				</div>
+				<div class="col-md-2">
+					<button type="button" ng-click="applyReshuffle()" class="btn btn-primary btn-xs btn-block">Re-shuffle</button>
+				</div>
+				<div class="col-md-2">
+					<button type="button" ng-click="pausePlay()" class="btn btn-primary btn-lg btn-block">{{(playerSettings.paused)?"Play":"Pause"}}</button>
+				</div>
+				<div class="col-md-2">
+					<button type="button" ng-click="skip()" class="btn btn-primary btn-xs btn-block">Skip</button>
+				</div>
+				<div class="col-md-3">
+
+				</div>
+			</div>
+			<div ng-show="playerSettings.started" class="row ">
+				<div class="col-md-1">
+					Volume
+				</div>
+				<div class="col-md-10">
+
+				</div>
+				<div class="col-md-1">
+
+				</div>
+			</div>
+			<div ng-show="playerSettings.started" class="row ">
+				<div class="col-md-1">
+					<input id="volumebar" style="width: 100%;" data-slider-id='volumebarslider' type="text" data-slider-min="0" data-slider-max="1" data-slider-step="0.1" data-slider-value="0.7"/>
+				</div>
+				<div class="col-md-10">
+					<p class="text-center">{{playerSettings.currenttrack.trackname}}</p>
+				</div>
+				<div class="col-md-1">
+					<strong><a href="https://www.youtube.com/watch?v={{playerSettings.currenttrack.youtubeurl}}"> <span class="label label-danger"> Youtube </span> </a></strong>
+				</div>
+			</div>
+
+			<div ng-show="playerSettings.started" class="row ">
+				<div class="col-md-1">
+				</div>
+				<div class="col-md-10">
+					<input id="videoprogressbar" data-slider-id='videoprogressbarslider' type="text" data-slider-min="0"  data-slider-step="1" data-slider-value="0" style="width: 100%;"/>
+				</div>
+				<div class="col-md-1">
+				</div>
+			</div>
+
+			<div ng-hide="playerSettings.hideStart" class="row ">
+				<div class="col-md-3">
+
+				</div>
+				<div class="col-md-2">
+
+				</div>
+				<div class="col-md-2">
+					<button type="button" ng-click="firstStart()" class="btn btn-primary btn-lg btn-block">Start</button>
+				</div>
+				<div class="col-md-2">
+				</div>
+				<div class="col-md-3">
+
+				</div>
+			</div>
+
+		</div>
 		<hr>
 		<table class="table table-bordered" style="border-color: #000000;">
 			<tr style="background-color: #66ff99;">
@@ -112,11 +200,11 @@
 			</tr>
 			<tr ng-repeat="track in tracksToPlay">
 				<th>{{$index}}</th>
-				<th>{{track.trackname}}</th>
+				<th><div ng-click="skipToSong($index)" class="text-danger" style="cursor: pointer" >{{track.trackname}}</div></th>
 				<th>{{track.genre1}}</th>
 				<th>{{track.genre2}}</th>
 				<th>{{track.genre3}}</th>
-				<th><a href="https://www.youtube.com/watch?v={{track.youtubeurl}}"> Youtube </a> </th>
+				<th><a href="https://www.youtube.com/watch?v={{track.youtubeurl}}"> <span class="label label-danger"> Youtube </span> </a> </th>
 			</tr>
 		</table>
 

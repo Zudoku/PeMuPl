@@ -6,13 +6,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>PeMuPl</title>
 
+    <link rel="stylesheet" href="css/pemuplcss.css">
     <!-- Bootstrap -->
     <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/bootstrap-slider.min.css">
   </head>
   <body class="bgcolor-white">
 
-    <div ng-view class ="bgcolor-white">
-      
+    <div id ="partialContainer" ng-view class ="bgcolor-white">
+
 
     </div>
 
@@ -21,9 +23,10 @@
     </div>
     <!-- LIBRARIES -->
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="https://code.jquery.com/jquery.js"></script>
+    <script src="lib/jquery/jquery.js"></script>
     <!-- Bootstrap -->
     <script src="lib/bootstrap/bootstrap.min.js"></script>
+    <script src="lib/bootstrap-slider/bootstrap-slider.min.js"></script>
     <!-- Angular.js -->
     <script src="lib/angular/angular.js"></script>
     <script src="lib/angular/angular-route.js"></script>
@@ -36,7 +39,7 @@
     <script src="js/services.js"></script>
     <script src="js/controllers.js"></script>
     <script src="js/filters.js"></script>
-    <script src="js/directives.js"></script> 
+    <script src="js/directives.js"></script>
 
 
     <!-- Google analytics -->
